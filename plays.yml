@@ -1,0 +1,17 @@
+---
+#- hosts: sfilerdr:ftphubdr 
+- hosts:  dr
+  user: pmsidawa1
+  gather_facts: yes
+
+  tasks:
+  - name: check if perl is installed
+    raw: rpm -qa | grep perl
+
+  - name: run something as appuser
+    raw: id
+    become: yes
+    become_user: "{{ appuser }} "  
+    register: result
+  - debug: var=result
+

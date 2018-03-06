@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: yes
+  gather_facts: no
+
+
+  tasks:
+  - name: install using DNF
+    dnf: name=telent state=installed
+
+

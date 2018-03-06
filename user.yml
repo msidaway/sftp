@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  become: yes
+  gather_facts: no
+
+  tasks: 
+  - name: add user append wheel and set bash as shell
+    user: name=tst groups=wheel append=yes shell=/bin/bash state=present
+    register: result
+  - debug: 
+     var=result
+
+

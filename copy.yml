@@ -1,0 +1,19 @@
+---
+- hosts: ftphubdr
+  become: no
+  user: pmsidawa1
+  gather_facts: no
+  become_user: ftpmstr
+
+  tasks: 
+  - name: copy files to remote host
+    copy: src=/tmp/sftpplus-sles11-x64-3.31.0.tar.gz  dest=/tmp owner=pmsidawa1 mode=0644 
+
+  - name: checlk file is there
+    raw: ls -al /tmp/sftpplus-sles11-x64-3.31.0.tar.gz
+    register: result
+  - debug: 
+     var=result
+
+
+

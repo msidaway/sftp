@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  user: pmsidawa1
+
+  tasks:
+  - name: Install lynx
+    package: name=lynx state=installed
+    delegate_to: 127.0.0.1
+

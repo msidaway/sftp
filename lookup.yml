@@ -1,0 +1,16 @@
+---
+- hosts: ftphubdr
+  user: pmsidawa1
+  gather_facts: no
+
+  tasks: 
+  - name: use lookuyp for a  
+    raw: id
+    become: yes
+    become_user: ftpmstr
+    register: result
+  - debug:
+      #var=result
+      msg: "{{ lookup('file','/etc/hosts') }} /etc/hosts file"
+#  - debug: msg=" User in integration is {{ lookup('ini', 'account section=server file=/tmp/server.ini') }}"
+

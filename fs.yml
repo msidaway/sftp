@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  become: yes
+
+  tasks: 
+  - name: install filesystem
+    filesystem: fstype=ext3 dev=/dev/    
+

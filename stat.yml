@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  gather_facts: no
+  
+  tasks: 
+  - name: check status of directory of exists
+    stat: path=/home/vagrant/test
+    register: p
+  - debug: msg="The path exists and is a directory "
+    when: p.stat.isdir 
+
+

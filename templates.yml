@@ -1,0 +1,13 @@
+---
+- hosts: ftphubdr
+  gather_facts: yes
+  user: pmsidawa1
+
+
+  vars:
+    username: ftpmstr
+    password: ftpmstr
+
+  tasks: 
+  - name: use j2 template 
+    template: src=conf.j2 dest=/home/pmsidawa1/conf.ini mode=0755 owner=pmsidawa1 

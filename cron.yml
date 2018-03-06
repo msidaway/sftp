@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  become: yes
+  gather_facts: no
+
+  tasks:
+  - name: install cron job
+    cron:
+      name: "check dirs"
+      minute: "0"
+      hour: "1"
+      job: "ls -alh > /dev/null"
+
+  - name: list cron job
+    raw: crontab -l 
+    register: result
+  - debug:
+      var=result
+

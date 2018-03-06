@@ -1,0 +1,39 @@
+---
+- hosts: localhost
+  user: pmsidawa1
+  gather_facts: no
+
+  pre_tasks: 
+  - name: get latest version 
+    raw:  curl   https://download.sftpplus.com/sftpplus/LATEST > version 
+    #shell:  VERSION=$( curl   https://download.sftpplus.com/sftpplus/LATEST)
+
+  vars:
+    VERSION: "{{ lookup('file', '/home/vagrant/playbooks/version') }}"
+
+  tasks:
+  - debug: 
+      msg: "Version is : {{ VERSION }} "
+
+  - name: set major version 
+    set_fact:
+     MAJOR: "{{ VERSION.split('.')[0] }}"
+  - debug:
+     msg: " MAJOR version is {{ MAJOR }}" 
+
+
+  - name: Set minor version 
+    set_fact:
+     MINOR: "{{ VERSION.split('.')[1] }}"
+  - debug:
+     msg: " Minor version os {{ MINOR }} " 
+
+  - name: get the latest download
+    get_url:
+      url:  "http://download.sftpplus.com/sftpplus/{{ MAJOR }}/{{ MINOR }}/sftpplus-sles11-x64-{{ MAJOR }}.{{ MINOR }}.0.tar.gz" 
+      dest: /tmp 
+      mode: 0440
+
+
+
+

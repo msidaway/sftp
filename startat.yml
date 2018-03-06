@@ -1,0 +1,24 @@
+---
+- hosts: ftphubdr
+  user: pmsidawa1
+  gather_facts: no
+
+  tasks:
+  - name: list home directory
+    command: ls -al ~pmsidawa1
+    register: result
+  - debug: 
+      var=result
+
+  - name: cat /etr/hosts
+    raw: cat /etc/hosts
+    register: result
+  - debug: 
+      var=result 
+
+  - name: Run a df
+    command: df -h
+    register: result 
+  - debug: 
+     var=result
+

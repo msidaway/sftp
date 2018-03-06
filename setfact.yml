@@ -1,0 +1,15 @@
+--- 
+- hosts: localhost
+  gather_facts: no
+
+  vars:
+   playbook: 1.0 
+
+  tasks: 
+  - name: set a fact
+    set_fact:
+      singlefact: SOMETHING
+  - debug: msg={{ playbook }}
+  - debug: msg={{ singlefact }} 
+
+

@@ -1,0 +1,20 @@
+---
+- hosts: ftphubdr
+  user: pmsidawa1
+  gather_facts: no
+
+  tasks:
+  - name: use shell modile with args
+    shell: /usr/bin/uptime > uptime.log 
+    args:
+       chdir: /tmp
+       creates: uptime.log
+  - name: cat uptime.log
+    raw: cat /tmp/uptime.log
+    register: result 
+  - debug: var=result
+
+
+
+    
+  

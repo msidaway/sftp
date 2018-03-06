@@ -1,0 +1,12 @@
+--- 
+- hosts: localhost
+  become: yes
+  
+  tasks:
+  - name: Use selinux moduke
+    selinux: policy=targeted state=permissive
+
+  - name: check setting
+    raw: setenforce -l
+    register: result
+  - debug: var=result

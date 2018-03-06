@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  user: pmsidawa1
+  gather_facts: no
+
+  tasks:
+  - name: unarchive file
+    unarchive:
+      dest: /tmp
+      src: /tmp/sftpplus-sles11-x64-3.31.0.tar.gz
+      copy:  yes
+
+
+
+

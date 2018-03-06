@@ -1,0 +1,15 @@
+---
+- hosts: ftphubdr
+  gather_facts: no
+  user: "{{ user }}" 
+
+  tasks:
+  - name: list variable dir
+    command: ls -al "{{ dir }}"
+
+  - name: cat a file
+    raw: cat "{{ file }}"
+
+
+
+

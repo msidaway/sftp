@@ -1,0 +1,14 @@
+---
+- hosts: ftphubdr
+  user: pmsidawa1
+  gather_facts: no
+
+  tasks:
+  - name: fetch a file
+    fetch: src=/home/pmsidawa1/file1 dest=/tmp/drfile1 owner=tst group=wheel mode=0644 
+    register: result
+  - debug: 
+     var=result
+
+
+  

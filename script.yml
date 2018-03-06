@@ -1,0 +1,10 @@
+--- 
+- hosts: ftphubdr
+  user: pmsidawa1
+  gather_facts: no
+
+
+  tasks:
+  - name: run a scrit remotely
+    script: /home/vagrant/playbooks/system_uptime.sh creates=/home/vagrant/uptime.log
+ 
