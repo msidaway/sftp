@@ -1,0 +1,12 @@
+---
+- hosts: ftphubdr
+  gather_facts: no
+  user: ftpmstr
+
+
+  tasks:
+  - name: get ftpmstr repo 
+    synchronize:
+       src: /home/vagrant/ftpmstr
+       dest: /home/ftpmstr/gitrepo
+
