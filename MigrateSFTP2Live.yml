@@ -97,12 +97,25 @@
      timeout: 10
      state: absent
 
+  - name: get current live version 
+    shell: " find {{ SFTPHOME }}  -maxdepth 1 -type l -name SFTPPlus -ls | awk '{print $13}'  " 
+    register: latestsymlink
+  - debug: 
+     msg: " Latest link is {{ latestsymlink.stdout }}"  
+
+  - name: reconfigure migrated version ini file 
+    command: "grep flrctdr03 {{SFTPHOME }}/{{ latestsymlink.stdout }}/configuration/server.ini"
+    register: check
+  - debug: 
+     var: check
+    
+
   - name: unlink existing SFTPLUS
     file: 
      dest: "{{ SFTPHOME }}/SFTPPlus"
      state: absent
      force: yes
-  - name: linke in new version 
+  - name: link in new version 
     file:
       path: "{{ SFTPHOME }}" 
       src: "SFTPPLUS_{{ MAJOR }}.{{ MINOR }}.0"
